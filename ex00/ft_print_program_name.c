@@ -6,11 +6,12 @@
 /*   By: edi-iori <edi-iori@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 14:03:59 by edi-iori          #+#    #+#             */
-/*   Updated: 2023/07/10 22:33:48 by edi-iori         ###   ########lyon.fr   */
+/*   Updated: 2023/07/10 22:44:45 by edi-iori         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+
 void	print(char *str)
 {
 	int	i;
@@ -22,6 +23,7 @@ void	print(char *str)
 		i++;
 	}
 }
+
 int	main(int argc, char *argv[])
 {
 	(void) argc;
