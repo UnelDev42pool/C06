@@ -6,7 +6,7 @@
 /*   By: edi-iori <edi-iori@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 22:40:27 by edi-iori          #+#    #+#             */
-/*   Updated: 2023/07/11 09:27:25 by edi-iori         ###   ########lyon.fr   */
+/*   Updated: 2023/07/13 12:38:46 by edi-iori         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,11 @@ void	print(char *str)
 	int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
 		write(1, &str[i], 1);
 		i++;
 	}
-}
-
-char	*ft_strcpy(char *dest, char *src)
-{
-	int	i;
-
-	i = 0;
-	while (src[i] != '\0')
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
 }
 
 int	ft_strcmp(char *s1, char *s2)
@@ -54,42 +40,35 @@ int	ft_strcmp(char *s1, char *s2)
 	return (s1[i] - s2[i]);
 }
 
-int	main(int argc, char *argv[])
+void	ft_sort_strings(char *argv[], int len)
 {
-	int i;
-	int j;
-	char temp[100];
-	char str[100][100];
+	char	*temp;
+	int		i;
 
 	i = 1;
-	while (i < argc)
+	while (i < len - 1)
 	{
-		j = 0;
-		while (argv[i][j])
+		if (ft_strcmp(argv[i], argv[i + 1]) > 0)
 		{
-			str[i - 1][j] = argv[i][j];
-			j++;
+			temp = argv[i + 1];
+			argv[i + 1] = argv[i];
+			argv[i] = temp;
+			ft_sort_strings(argv, len);
 		}
 		i++;
 	}
-	i = 0;
-	while (i < argc - 1){
-		j = 0;
-		while (j < argc - 1){
-			if (ft_strcmp(str[i],str[j]) < 0){
-				ft_strcpy(temp, str[i]);
-				ft_strcpy(str[i], str[j]);
-				ft_strcpy(str[j], temp);
-			}
-			j++;
-		}
-		i++;
-	}
-	i = 0;
-	while (i < argc - 1)
+}
+
+int	main(int argc, char *argv[])
+{
+	int	i;
+
+	ft_sort_strings(argv, argc);
+	i = 1;
+	while (i < argc)
 	{	
-		print(str[i]);
-		write(1,"\n", 1);
+		print(argv[i]);
+		write(1, "\n", 1);
 		i++;
 	}
 }
